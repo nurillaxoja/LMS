@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.Librorian.main.LibrorianMianController">
+   <children>
+      <StackPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <VBox BorderPane.alignment="CENTER">
+                     <children>
+                        <MenuBar>
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                <MenuItem mnemonicParsing="false" onAction="#menuClose" text="Close" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Add ">
+                              <items>
+                                <MenuItem mnemonicParsing="false" onAction="#menuAddBook" text="Add book" />
+                                    <MenuItem mnemonicParsing="false" onAction="#menuAddStudent" text="Add Student" />
+                              </items>
+                            </Menu>
+                              <Menu mnemonicParsing="false" text="View">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#menuViewBook" text="View book" />
+                                    <MenuItem mnemonicParsing="false" onAction="#menuViewStudent" text="View Student" />
+                                    <MenuItem mnemonicParsing="false" onAction="#menuFullScreen" text="Full screen" />
+                                 </items>
+                              </Menu>
+                            <Menu mnemonicParsing="false" text="Help">
+                              <items>
+                                <MenuItem mnemonicParsing="false" onAction="#menuAbout" text="About" />
+                              </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
+                     </children>
+                  </VBox>
+               </top>
+               <right>
+                  <VBox BorderPane.alignment="CENTER">
+                     <children>
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadAddStudent" prefHeight="150.0" prefWidth="200.0" text="Add Student">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/add%20student.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadAddBook" prefHeight="150.0" prefWidth="200.0" text="Add Book">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" onDragDetected="#loadAddBook" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/add%20book.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadStudentTabel" prefHeight="150.0" prefWidth="200.0" text="View Student">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/view%20student.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onAction="#loadBookTabel" prefHeight="150.0" prefWidth="200.0" stylesheets="@librorianmian.css" text="View books">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" onDragDetected="#loadBookTabel" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/view%20books.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="299.0" mnemonicParsing="false" onAction="#loadSearchInNen" prefHeight="150.0" prefWidth="200.0" text="Search book on Internet">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/chroome.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+               </right>
+               <center>
+                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                    <tabs>
+                      <Tab text="Book issue">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox layoutX="33.0" layoutY="151.0" prefHeight="524.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <HBox fx:id="book_info" alignment="CENTER" prefHeight="252.0" prefWidth="600.0" style="-fx-background-color: #e7e7e7;">
+                                             <children>
+                                                <TextField fx:id="bookIdIn" onAction="#loadBookInfo" prefHeight="25.0" prefWidth="198.0" promptText="Book ID" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="20.0" left="20.0" top="20.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                                <VBox alignment="CENTER" prefHeight="166.0" prefWidth="340.0" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="20.0" right="20.0" top="20.0" />
+                                                   </HBox.margin>
+                                                   <children>
+                                                      <Text fx:id="BookName" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Name" textAlignment="CENTER" wrappingWidth="371.373046875" VBox.vgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="Calibri" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <Text fx:id="BookAuthor" layoutX="10.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author" textAlignment="CENTER" wrappingWidth="367.373046875" VBox.vgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="Calibri" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <Text fx:id="BookStatus" layoutX="12.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" textAlignment="CENTER" wrappingWidth="367.373046875">
+                                                         <font>
+                                                            <Font name="Calibri" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox fx:id="student_info" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="216.0" prefWidth="600.0" style="-fx-background-color: #e7e7e7;">
+                                             <children>
+                                                <TextField fx:id="studentIdin" onAction="#loadStudentInfo" prefHeight="25.0" prefWidth="198.0" promptText="Student ID" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="20.0" left="20.0" top="20.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                                <VBox alignment="CENTER" prefHeight="120.0" prefWidth="359.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Text fx:id="studentName" strokeType="OUTSIDE" strokeWidth="0.0" text="Student name" textAlignment="CENTER" wrappingWidth="367.373046875" VBox.vgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="Calibri" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets bottom="20.0" right="20.0" top="20.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="85.0" prefWidth="600.0">
+                                             <children>
+                                                <JFXButton onAction="#loadIssueOperation" prefHeight="67.0" prefWidth="177.0" styleClass="setup-button" stylesheets="@librorianmian.css" text="Issue">
+                                                   <font>
+                                                      <Font name="Calibri" size="18.0" />
+                                                   </font>
+                                                   <graphic>
+                                                      <ImageView fitHeight="38.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../icons/issue.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Return Book ">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <BorderPane layoutX="129.0" layoutY="38.0" prefHeight="524.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <top>
+                                          <JFXTextField fx:id="bookID" alignment="CENTER" labelFloat="true" maxWidth="332.0" minWidth="332.0" onAction="#loadBookinfo2" prefHeight="31.0" prefWidth="332.0" promptText="Enter Book ID" BorderPane.alignment="CENTER">
+                                             <BorderPane.margin>
+                                                <Insets top="25.0" />
+                                             </BorderPane.margin>
+                                          </JFXTextField>
+                                       </top>
+                                       <center>
+                                          <ListView fx:id="IssueDataList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                             <padding>
+                                                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                             </padding>
+                                          </ListView>
+                                       </center>
+                                       <bottom>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <JFXButton onAction="#loadSubmissionOP" prefHeight="53.0" prefWidth="113.0" styleClass="setup-button" stylesheets="@librorianmian.css" text="Return">
+                                                   <HBox.margin>
+                                                      <Insets right="20.0" />
+                                                   </HBox.margin>
+                                                   <graphic>
+                                                      <ImageView fitHeight="37.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../icons/return.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                                <JFXButton layoutX="284.0" layoutY="48.0" onAction="#loadRenewOp" prefHeight="49.0" prefWidth="107.0" styleClass="setup-button" stylesheets="@librorianmian.css" text="Upload">
+                                                   <HBox.margin>
+                                                      <Insets left="20.0" />
+                                                   </HBox.margin>
+                                                   <graphic>
+                                                      <ImageView fitHeight="33.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../icons/upload.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                       </bottom>
+                                    </BorderPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </center>
+               <bottom>
+                  <VBox prefHeight="21.0" prefWidth="764.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Inha universitiy in Tashkent  Librarian" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="Calibri Italic" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </bottom>
+            </BorderPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
