@@ -1,5 +1,7 @@
-    
-package lms.listBook;
+/*
+        listAdminLoader
+ */
+package lms.listAdmin;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -9,10 +11,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class bookListLoader extends Application {
+public class listAdminLoader extends Application {
+    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("bookList.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("adminList.fxml"));
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
@@ -22,4 +25,5 @@ public class bookListLoader extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
 }

@@ -53,14 +53,19 @@ public class BookListController implements Initializable {
     databaseHandler handler = databaseHandler.getInstance();
     ObservableList<Book> list = FXCollections.observableArrayList();
    
-    //AlertMaker alertmaker = new AlertMaker();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initCol();
-//        databaseHandler handler = new databaseHandler();
         loadData();
-    }    
+    }   
+    private void initCol() {
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        authorCol.setCellValueFactory(new PropertyValueFactory<>("author"));
+        publisherCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        availiblCol.setCellValueFactory(new PropertyValueFactory<>("availability"));
+    }
     private void loadData() {
         list.clear();
         String qu = "SELECT * FROM BOOK";
@@ -77,16 +82,10 @@ public class BookListController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(AddBookController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tableView.setItems(list);
+        tableView.getItems().setAll(list);
     }
 
-    private void initCol() {
-        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        authorCol.setCellValueFactory(new PropertyValueFactory<>("author"));
-        publisherCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
-        availiblCol.setCellValueFactory(new PropertyValueFactory<>("availability"));
-    }
+    
 
     @FXML
     private void bookDeleteOp(ActionEvent event) {

@@ -13,10 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lms.database.databaseHandler;
-import lms.listBook.BookListController;
 import lms.listStudent.StudentListController;
-import lms.listStudent.StudentListController.Student;
-import sun.security.x509.InvalidityDateExtension;
 
 
 public class AddStudentController implements Initializable {
@@ -59,7 +56,7 @@ public class AddStudentController implements Initializable {
         }
         if(isInEditMode)
         { 
-//            isInEditMode();
+          studentisInEditMode();
             return;
         }
         
@@ -90,7 +87,7 @@ public class AddStudentController implements Initializable {
         Stage stage = (Stage) sRootpane.getScene().getWindow();
         stage.close();
     }
-    public void inflateUI(StudentListController.Student student){
+    public void inflateUIS(StudentListController.Student student){
         sName.setText(student.getName());
         sSurname.setText(student.getSurname());
         sUserId.setText(student.getId());
@@ -98,14 +95,19 @@ public class AddStudentController implements Initializable {
         
     }
 
-    private void updateStudent() {
+    private void studentisInEditMode() {
+        handleSEditOp();
+        return;
+    
+    }
+
+    private void handleSEditOp() {
+       StudentListController.Student student = new StudentListController.Student(sName.getText(),sSurname.getText(),sUserId.getText(),sPassword.getText());
+       if(databaseHandler.getInstance().updateStudent(student)){
+           AlertMaker.showSimpleAlert("Student change", "Student was succsefully edited");
+       }else{
+           AlertMaker.showErrorMessage("Student change", "Stundent edition failed");
+       }
         
-       //Student student = new Student(sName.getText(),sSurname.getText(),sUserId.getText());
-//        if(databaseHandler.updateBook(book))
-//        {
-//            AlertMaker.showSimpleAlert("Succsess", "Book updated");
-//        }else{
-//            AlertMaker.showErrorMessage("Failes", "Book was not updated");
-//        } 
-    }    
+    }
 }

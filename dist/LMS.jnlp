@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="LMS.jar" size="201440" download="eager" />
+    <jar href="LMS.jar" size="189144" download="eager" />
     <jar href="lib\derby.jar" size="3224708" download="eager" />
     <jar href="lib\derbyclient.jar" size="590087" download="eager" />
     <jar href="lib\jfoenix.jar" size="2211776" download="eager" />

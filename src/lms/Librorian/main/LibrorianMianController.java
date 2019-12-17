@@ -305,8 +305,7 @@ public class LibrorianMianController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Return failed");
                 alert.showAndWait();
-        }
-        ///////
+            }
         }
         else{
             AlertMaker.showSimpleAlert("Book return", "Book Return cancled seccsfelly");
@@ -399,6 +398,7 @@ public class LibrorianMianController implements Initializable {
 
     @FXML
     private void loadSearchInNen(ActionEvent event) {
+        loadWindow("/lms/Web/webWiew.fxml", "Inha Universitiy Bowser");
     
     }
 

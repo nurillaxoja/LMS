@@ -64,7 +64,6 @@ public class AddBookController implements Initializable {
         if(isInEditMode){
             handleEditOp();
             return;
-            
         }
         
         

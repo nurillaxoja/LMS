@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lms.listBook.BookListController.Book;
+import lms.listStudent.StudentListController;
+import lms.listStudent.StudentListController.Student;
 
 
 
@@ -23,16 +25,17 @@ public final class databaseHandler {
 
     private databaseHandler(){
         createConnection();
+        settupAdminTable();
         setUpBookTable();
         settupMemberTable();
         settupStudentTable();
         settupIssueTable();
+        
     }
     
     public static databaseHandler getInstance(){
         if(handler == null){
             handler = new databaseHandler();
-
         }
         return handler;
     }
@@ -43,7 +46,6 @@ public final class databaseHandler {
             conn = DriverManager.getConnection(DB_URL);
         }
         catch (Exception e) {
-            //JOptionPane.showMessageDialog(null, "Cant load database", "Database Error", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
     }
@@ -154,7 +156,7 @@ public final class databaseHandler {
                  stmt.execute("CREATE TABLE "+ TABLE_NAME + "("
                  +"     id varchar(200) primary key,\n"
                  +"     name varchar(200),\n"
-                 +"     surname varchar(200),\n"
+                 +"     surname varchar(200),\n"              
                  +"     password varchar(200)\n"                
                  +" )");    
              }
@@ -240,8 +242,59 @@ public final class databaseHandler {
              Logger.getLogger(databaseHandler.class.getName()).log(Level.SEVERE, null, ex);
          }
          return false;
-       
     }
+    public boolean updateStudent(Student student){
+         try {
+             String update = "UPDATE STUDENT SET ID=?,NAME=?,SURNAME=?, PASSWORD=? WHERE ID=?";
+             PreparedStatement stmt = conn.prepareStatement(update);
+             stmt.setString(1, student.getId());
+             stmt.setString(2, student.getName());
+             stmt.setString(3, student.getSurname()); 
+             stmt.setString(4, student.getPassword()); 
+             int res = stmt.executeUpdate();
+             return (res>0);
+             
+         } catch (SQLException ex) {
+             Logger.getLogger(databaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         return false;
+    }
+    
+    public boolean StudentIssedBook(Student student){
+        try {
+             String checkstmt = "SELECT COUNT(*) FROM ISSUE WHERE STUDENTID=?";
+             PreparedStatement stmt = conn.prepareStatement(checkstmt);
+             stmt.setString(1, student.getId());
+             ResultSet rs = stmt.executeQuery();
+             while(rs.next()){
+                 int count = rs.getInt(1);
+                 System.out.println(count);
+                 return (count>0);
+             }    
+        } catch (SQLException ex) {
+             Logger.getLogger(databaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         return false;
+    }
+    
+    public boolean deleteStudent(Student Student){
+         try {
+             String deleteStatment = "DELETE FROM STUDENT WHERE ID = ?";
+             PreparedStatement stmt = conn.prepareStatement(deleteStatment);
+             stmt.setString(1, Student.getId());
+             int res = stmt.executeUpdate();
+             if(res == 1)
+             {
+                 return true;
+             }
+            return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(databaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         return false;
+    }
+    
+    
 
 }
 

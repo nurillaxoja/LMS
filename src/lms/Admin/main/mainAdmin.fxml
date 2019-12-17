@@ -56,7 +56,7 @@
          <left>
             <VBox prefHeight="477.0" prefWidth="209.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="1000.0" prefWidth="200.0" text="Add Administrator">
+                  <Button fx:id="btnAddAdmin" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="1000.0" prefWidth="200.0" text="Add Administrator">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -65,7 +65,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="1000.0" prefWidth="200.0" text="View Administrator">
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadViewAdmin" prefHeight="1000.0" prefWidth="200.0" text="View Administrator">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -78,7 +78,7 @@
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../icons/femaleUser.png" />
+                              <Image url="@../../../icons/view%20librarian.png" />
                            </image>
                         </ImageView>
                      </graphic>

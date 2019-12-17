@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="406.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.addAdmin.AddAdminController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXTextField fx:id="nameAdmin" labelFloat="true" promptText="Admin name">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="30.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="surnameAdmin" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Admin Surname">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="idAdmin" labelFloat="true" layoutX="10.0" layoutY="41.0" promptText="Admin ID">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="passwordAdmin" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Password">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <HBox prefHeight="123.0" prefWidth="406.0">
+               <children>
+                  <JFXButton fx:id="btnSave" onAction="#loadSaveButton" prefHeight="60.0" prefWidth="180.0" styleClass="addBook.css" stylesheets="@../addBook/addbook.css" text="Save">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="btnCancel" prefHeight="60.0" prefWidth="180.0" styleClass="addBook.css" stylesheets="@../addBook/addbook.css" text="Cancel">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets left="1.0" right="1.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

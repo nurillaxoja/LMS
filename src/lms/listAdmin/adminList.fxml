@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.listAdmin.AdminListController">
+   <children>
+      <TableView fx:id="tableView" layoutX="34.0" layoutY="30.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="147.0" text="Name" />
+          <TableColumn fx:id="colSurname" minWidth="0.0" prefWidth="136.0" text="Surname" />
+            <TableColumn fx:id="colId" minWidth="0.0" prefWidth="154.0" text="ID" />
+            <TableColumn fx:id="colPassword" prefWidth="162.0" text="Password" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

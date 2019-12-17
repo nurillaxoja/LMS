@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lms.Librorian.main.LibrorianMianController;
@@ -16,9 +17,15 @@ public class MainAdminController implements Initializable {
     
     @FXML
     private AnchorPane rootPane;
+    @FXML
+    private Button btnAddAdmin;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        btnAddAdmin.setOnAction(e->{
+            LConntroller.loadWindow("/lms/addAdmin/addAdmin.fxml", "Add new Admin");
+        
+        });
         
     }    
 
@@ -30,6 +37,7 @@ public class MainAdminController implements Initializable {
 
     @FXML
     private void menuAddAdmin(ActionEvent event) {
+        LConntroller.loadWindow("/lms/addAdmin/addAdmin.fxml", "Add new Admin");
     }
 
     @FXML
@@ -46,6 +54,7 @@ public class MainAdminController implements Initializable {
 
     @FXML
     private void menuViewAdmin(ActionEvent event) {
+        LConntroller.loadWindow("/lms/listAdmin/adminList.fxml", "Administrators List");
     }
 
     @FXML
@@ -87,6 +96,11 @@ public class MainAdminController implements Initializable {
     @FXML
     private void loadViewLibrorian(ActionEvent event) {
         LConntroller.loadWindow("/lms/listMember/memberList.fxml", "Librarians list");
+    }
+
+    @FXML
+    private void loadViewAdmin(ActionEvent event) {
+        LConntroller.loadWindow("/lms/listAdmin/adminList.fxml", "Administrators List");
     }
       
 }

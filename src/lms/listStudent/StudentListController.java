@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,6 +34,7 @@ import lms.addStudent.AddStudentController;
 import lms.database.databaseHandler;
 import lms.listBook.BookListController;
 import lms.util.Util;
+import sun.plugin.javascript.navig.JSType;
 
 
 public class StudentListController implements Initializable {
@@ -70,7 +74,7 @@ public class StudentListController implements Initializable {
                 String name = rs.getString("name");
                 String surname = rs.getString("surname");
                 
-                list.add(new Student(name, surname, id));
+                list.add(new Student(name, surname, id,null));
             }
         } catch (SQLException ex) {
             Logger.getLogger(AddBookController.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,39 +84,61 @@ public class StudentListController implements Initializable {
 
     @FXML
     private void studentEditOp(ActionEvent event) {
-         Student selectedForEdit = tableView.getSelectionModel().getSelectedItem();
-        //selectedForEdit = tableView.getSelectionModel().getSelectedItem();
-        if(selectedForEdit == null){
-            AlertMaker.showErrorMessage("No Student selected", "Please select Student to edit");
+        Student selectedForEditon = tableView.getSelectionModel().getSelectedItem();
+        if(selectedForEditon==null){
+            AlertMaker.showErrorMessage("Select student error", "Select student first for eddition");
             return;
         }
-        try { 
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/lms/addStudent/addStudent.fxml"));
             Parent parent = loader.load();
             
             AddStudentController controller = (AddStudentController)loader.getController();
-            controller.inflateUI(selectedForEdit);
+            controller.inflateUIS(selectedForEditon);
             
             Stage stage = new Stage(StageStyle.DECORATED);
-            Util.setStage(stage);
-            stage.setTitle("Edit Student");
+            stage.setTitle("Student edit option");
             stage.setScene(new Scene(parent));
+            Util.setStage(stage);
             stage.show();
-            stage.setOnCloseRequest((e)->{
-                studentRefreshOp( new ActionEvent());
-                
+            stage.setOnCloseRequest(e->{
+                studentRefreshOp(new ActionEvent());
             });
             
-            
         } catch (IOException ex) {
-            Logger.getLogger(LibrorianMianController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddBookController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
 
     @FXML
     private void studentDeletOp(ActionEvent event) {
-        
+        Student selectForDelete = tableView.getSelectionModel().getSelectedItem();
+        if(selectForDelete == null){
+            AlertMaker.showErrorMessage("Error", "Student not selected");
+            return;
+        }
+        if(databaseHandler.getInstance().StudentIssedBook(selectForDelete)){
+            AlertMaker.showErrorMessage("Student delet", "Student Issued book");
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Sudent delete");
+            alert.setContentText("Are you sure tu delete student "+selectForDelete.getId()+" ?");
+            Optional<ButtonType> answer = alert.showAndWait();
+            if(answer.get()==ButtonType.OK){
+               Boolean result = databaseHandler.getInstance().deleteStudent(selectForDelete);
+               if(result){
+                   AlertMaker.showSimpleAlert("Student deleted", "Student was Succsesfully deleted");
+                   list.remove(selectForDelete);
+               }
+               else{
+                   AlertMaker.showErrorMessage("Student delete", "Student "+selectForDelete.getId()+" was not deleted ");
+               }
+            }else{
+                AlertMaker.showSimpleAlert("Delete cancel", "Deletion was succsesfully cancled");
+            }
+        }
     }
 
     @FXML
@@ -124,11 +150,13 @@ public class StudentListController implements Initializable {
         private final SimpleStringProperty name;
         private final SimpleStringProperty surname;
         private final SimpleStringProperty id;
+        private final SimpleStringProperty password;
    
-        Student(String name,String surname , String id){
+        public Student(String name,String surname , String id,String password){
             this.name = new SimpleStringProperty(name);
             this.surname = new SimpleStringProperty(surname);
             this.id = new SimpleStringProperty(id);
+            this.password = new SimpleStringProperty(password);
         }
 
         public String getName() {
@@ -142,7 +170,10 @@ public class StudentListController implements Initializable {
         public String getId() {
             return id.get();
         }
-        
+
+        public String getPassword() {
+            return password.get();
+        }
     
     }
     
