@@ -15,6 +15,15 @@
             <TableColumn fx:id="colId" minWidth="0.0" prefWidth="154.0" text="ID" />
             <TableColumn fx:id="colPassword" prefWidth="162.0" text="Password" />
         </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#ContextRefresh" text="Refresh" />
+                  <MenuItem mnemonicParsing="false" onAction="#ContextEdit" text="Edit" />
+                  <MenuItem mnemonicParsing="false" onAction="#ContextDelete" text="Delete" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
       </TableView>
    </children>
 </AnchorPane>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="360.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="lms.logInStudent.LogInStudentController">
+   <children>
+      <Label fx:id="logInLabel" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="16.0" prefHeight="88.0" prefWidth="354.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Inha Universitiy in Tashkent &#10;Library Managment System&#10;Student" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Calibri" size="17.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtStudentUsername" labelFloat="true" layoutX="61.0" layoutY="116.0" maxWidth="234.0" minWidth="224.0" prefHeight="31.0" prefWidth="224.0" promptText="Username">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField fx:id="txtStudentPassword" labelFloat="true" layoutX="61.0" layoutY="183.0" maxWidth="224.0" minWidth="224.0" onAction="#LogInStudent" prefHeight="31.0" prefWidth="224.0" promptText="password">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXButton layoutX="77.0" layoutY="260.0" onAction="#LogInStudent" prefHeight="37.0" prefWidth="74.0" stylesheets="@../addBook/addbook.css" text="Log in" />
+      <JFXButton layoutX="191.0" layoutY="260.0" onAction="#StudentCancel" prefHeight="37.0" prefWidth="74.0" stylesheets="@../addBook/addbook.css" text="Cancel" />
+      <Label fx:id="lblWrong" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="172.0" layoutY="220.0" prefHeight="17.0" prefWidth="152.0" textAlignment="RIGHT" textFill="RED" />
+   </children>
+</AnchorPane>

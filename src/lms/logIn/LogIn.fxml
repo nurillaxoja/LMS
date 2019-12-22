@@ -8,24 +8,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="362.0" prefWidth="354.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.logIn.LogInController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="362.0" prefWidth="354.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.logIn.LogInController">
    <children>
-      <Label alignment="CENTER" layoutX="31.0" layoutY="31.0" prefHeight="68.0" prefWidth="306.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Inha Universitiy in Tashkent &#10;Library Managment System" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="logInLabel" alignment="CENTER" layoutX="31.0" layoutY="31.0" prefHeight="101.0" prefWidth="354.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Inha Universitiy in Tashkent &#10;Library Managment System&#10;Librarian" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="Calibri" size="17.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="username" labelFloat="true" layoutX="41.0" layoutY="96.0" maxWidth="234.0" minWidth="224.0" prefHeight="31.0" prefWidth="224.0" promptText="Username" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="96.0">
+      <JFXTextField fx:id="txtUsername" labelFloat="true" layoutX="41.0" layoutY="127.0" maxWidth="234.0" minWidth="224.0" prefHeight="31.0" prefWidth="224.0" promptText="Username" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="127.0">
          <font>
             <Font size="15.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="password" layoutX="41.0" layoutY="163.0" maxWidth="224.0" minWidth="224.0" onAction="#LogIn" prefHeight="31.0" prefWidth="224.0" promptText="password" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="163.0">
+      <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="41.0" layoutY="182.0" maxWidth="224.0" minWidth="224.0" onAction="#LogInLibrarian" prefHeight="31.0" prefWidth="224.0" promptText="password" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="182.0">
          <font>
             <Font size="15.0" />
          </font>
       </JFXPasswordField>
-      <JFXButton layoutX="78.0" layoutY="240.0" onAction="#LogIn" prefHeight="37.0" prefWidth="74.0" stylesheets="@../addBook/addbook.css" text="Log in" />
+      <JFXButton layoutX="78.0" layoutY="240.0" onAction="#LogInLibrarian" prefHeight="37.0" prefWidth="74.0" stylesheets="@../addBook/addbook.css" text="Log in" />
       <JFXButton layoutX="205.0" layoutY="240.0" onAction="#Cancel" prefHeight="37.0" prefWidth="74.0" stylesheets="@../addBook/addbook.css" text="Cancel" />
+      <Label fx:id="lblWrong" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="152.0" layoutY="200.0" prefHeight="17.0" prefWidth="152.0" textAlignment="RIGHT" textFill="RED" />
    </children>
 </AnchorPane>

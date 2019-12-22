@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="LMS.jar" size="189144" download="eager" />
+    <jar href="LMS.jar" size="781688" download="eager" />
     <jar href="lib\derby.jar" size="3224708" download="eager" />
     <jar href="lib\derbyclient.jar" size="590087" download="eager" />
     <jar href="lib\jfoenix.jar" size="2211776" download="eager" />
@@ -16,6 +16,6 @@
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="LMS" >
     <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="lms.Librorian.main.LibrarianMainLoader"  name="LMS" />
+  <jfx:javafx-desc  width="800" height="600" main-class="lms.main.mainLoader"  name="LMS" />
   <update check="always"/>
 </jnlp>

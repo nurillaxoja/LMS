@@ -1,5 +1,5 @@
 
-package lms.logIn;
+package lms.logInAdmin;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -19,34 +19,41 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import lms.Librorian.main.LibrorianMianController;
 import lms.database.databaseHandler;
+import lms.logIn.LogInController;
 import lms.util.Util;
 
-public class LogInController implements Initializable {
-    @FXML
-    private Label logInLabel;
-    @FXML
-    private JFXTextField txtUsername;
-    @FXML
-    private JFXPasswordField txtPassword;
-    @FXML
-    private AnchorPane rootPane;
-    databaseHandler databaseHandler ;
-    LibrorianMianController lcontroller;
+
+public class LogInAdminController implements Initializable {
     @FXML
     private Label lblWrong;
+
+    @FXML
+    private JFXTextField txtAdminUsername;
+    @FXML
+    private Label logInLabel;
+    databaseHandler databaseHandler;
+    @FXML
+    private JFXPasswordField txtAdminPassword;
+    @FXML
+    private AnchorPane rootPane;
+  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        databaseHandler = databaseHandler.getInstance();
-        
+        databaseHandler=databaseHandler.getInstance();
     }    
 
     @FXML
-    private void LogInLibrarian(ActionEvent event) throws IOException {
-        try {
-            if(databaseHandler.isLogInLibrarian(txtUsername.getText(),txtPassword.getText())){
-            Parent parent = FXMLLoader.load(getClass().getResource("/lms/Librorian/main/LibrorianMian.fxml"));
+    private void adminCancel(ActionEvent event) {
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void LogInAdmin(ActionEvent event) throws IOException {
+         try {
+            if(databaseHandler.isLogInLibrarian(txtAdminUsername.getText(),txtAdminPassword.getText())){
+            Parent parent = FXMLLoader.load(getClass().getResource("/lms/Admin/main/mainAdmin.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
             Util.setStage(stage);
             stage.setTitle("Log in Lirarian");
@@ -58,12 +65,6 @@ public class LogInController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    @FXML
-    private void Cancel(ActionEvent event) {
-        Stage stage = (Stage) rootPane.getScene().getWindow();
-        stage.close();
     }
     
 }

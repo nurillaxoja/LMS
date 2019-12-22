@@ -31,13 +31,13 @@ public class AddStudentController implements Initializable {
     private JFXButton saveButton;
     @FXML
     private JFXButton cancelButton;
-
-     databaseHandler handler;
-     private Boolean isInEditMode = false;
+    databaseHandler databaseHandler;
+     
+     private Boolean isInEditMode = Boolean.FALSE;
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      handler = databaseHandler.getInstance();
+      databaseHandler = databaseHandler.getInstance();
     }    
 
     @FXML
@@ -56,7 +56,7 @@ public class AddStudentController implements Initializable {
         }
         if(isInEditMode)
         { 
-          studentisInEditMode();
+          handleSEditOp();
             return;
         }
         
@@ -69,7 +69,7 @@ public class AddStudentController implements Initializable {
                 + "'" + mPassword + "'"
                 + ")";
         System.out.println(st);
-        if(handler.execAction(st)){
+        if(databaseHandler.execAction(st)){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setContentText("Member saved");
@@ -91,19 +91,17 @@ public class AddStudentController implements Initializable {
         sName.setText(student.getName());
         sSurname.setText(student.getSurname());
         sUserId.setText(student.getId());
+        sPassword.setText(student.getPassword());
+        sUserId.setEditable(false);
         isInEditMode = Boolean.TRUE;
         
     }
 
-    private void studentisInEditMode() {
-        handleSEditOp();
-        return;
-    
-    }
+
 
     private void handleSEditOp() {
        StudentListController.Student student = new StudentListController.Student(sName.getText(),sSurname.getText(),sUserId.getText(),sPassword.getText());
-       if(databaseHandler.getInstance().updateStudent(student)){
+       if(databaseHandler.updateStudent(student)){
            AlertMaker.showSimpleAlert("Student change", "Student was succsefully edited");
        }else{
            AlertMaker.showErrorMessage("Student change", "Stundent edition failed");

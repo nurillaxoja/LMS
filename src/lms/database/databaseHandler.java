@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import lms.listAdmin.AdminListController.Admin;
 import lms.listBook.BookListController.Book;
 import lms.listStudent.StudentListController;
 import lms.listStudent.StudentListController.Student;
@@ -255,7 +256,7 @@ public final class databaseHandler {
              return (res>0);
              
          } catch (SQLException ex) {
-             Logger.getLogger(databaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(databaseHandler.class.getName()).log(Level.SEVERE, "{}", ex);
          }
          return false;
     }
@@ -293,9 +294,103 @@ public final class databaseHandler {
          }
          return false;
     }
-    
-    
+    public boolean deleteAdmin(Admin admin){
+         try {
+             String deleteStatment = "DELETE FROM ADMIN WHERE ID = ?";
+             PreparedStatement stmt = conn.prepareStatement(deleteStatment);
+             stmt.setString(1, admin.getId());
+             int res = stmt.executeUpdate();
+             if(res == 1)
+             {
+                 return true;
+             }
+            return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(databaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         return false;
+    }
 
+    public boolean updateAdmin(Admin admin) {
+        try {
+             String update = "UPDATE ADMIN SET NAME=?,SURNAME=?,ID=?, PASSWORD=? WHERE ID=?";
+             PreparedStatement stmt = conn.prepareStatement(update);
+             stmt.setString(1, admin.getName());
+             stmt.setString(2, admin.getSurname());
+             stmt.setString(3, admin.getId());
+             stmt.setString(4, admin.getPassword()); 
+             int res = stmt.executeUpdate();
+             return (res>0);
+             
+         } catch (SQLException ex) {
+             Logger.getLogger(databaseHandler.class.getName()).log(Level.SEVERE, "{}", ex);
+         }
+         return false;
+    }
+    public boolean isLogInLibrarian(String user,String pass)throws SQLException{
+        try {
+        PreparedStatement stmt= null;
+        ResultSet rs = null;
+        String qu = "SELECT * FROM MEMBER WHERE ID=? AND PASSWORD=? ";
+            stmt = conn.prepareStatement(qu);
+            stmt.setString(1, user);
+            stmt.setString(2, pass);
+            rs=stmt.executeQuery();
+            if(rs.next()){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }finally{
+            //rs.close();
+            stmt.close();
+        }
+    }
+    public boolean isLogInAdmin(String user,String pass)throws SQLException{
+        try {
+        PreparedStatement stmt= null;
+        ResultSet rs = null;
+        String qu = "SELECT * FROM ADMIN WHERE ID=? AND PASSWORD=? ";
+            stmt = conn.prepareStatement(qu);
+            stmt.setString(1, user);
+            stmt.setString(2, pass);
+            rs=stmt.executeQuery();
+            if(rs.next()){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }finally{
+            //rs.close();
+            stmt.close();
+        }
+    }
+    
+    public boolean isLogInStudent(String user,String pass)throws SQLException{
+        try {
+        PreparedStatement stmt= null;
+        ResultSet rs = null;
+        String qu = "SELECT * FROM STUDENT WHERE ID=? AND PASSWORD=? ";
+            stmt = conn.prepareStatement(qu);
+            stmt.setString(1, user);
+            stmt.setString(2, pass);
+            rs=stmt.executeQuery();
+            if(rs.next()){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }finally{
+            stmt.close();
+        }
+    }
+    
 }
 
     

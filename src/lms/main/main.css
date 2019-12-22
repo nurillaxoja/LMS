@@ -1,0 +1,23 @@
+.image{
+    -fx-background-image: url("icon.jpg");
+    -fx-background-size: cover;
+}
+.jfx-combobox{
+    -fx-text-fill: white;
+}
+.loginBtn{
+    -fx-text-fill: white;
+    
+}
+.loginBtn:hover{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    
+}
+.combo-box.list-cell 
+{
+    -fx-background: white;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-cell-size: 1.66667em; 
+}

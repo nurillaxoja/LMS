@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lms.database.databaseHandler;
+import lms.listAdmin.AdminListController;
+import lms.listBook.BookListController;
 
 
 public class AddAdminController implements Initializable {
@@ -30,6 +32,8 @@ public class AddAdminController implements Initializable {
     @FXML
     private JFXTextField passwordAdmin;
     databaseHandler databaseHandler;
+   
+    Boolean adminIsInEditMode = Boolean.FALSE;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -52,7 +56,10 @@ public class AddAdminController implements Initializable {
             AlertMaker.showErrorMessage("Error", "Please enter all fields");
             return;
         }
-        
+        if(adminIsInEditMode){
+            adminEditOp();
+            return;
+        }
         
         String qu = "INSERT INTO ADMIN VALUES ("
              +   "'"+id+"',"
@@ -67,5 +74,26 @@ public class AddAdminController implements Initializable {
             AlertMaker.showErrorMessage("Error", "Admin was not saved");
         }
     }
+
+    public void inflateAdminUI(AdminListController.Admin admin) {
+        nameAdmin.setText(admin.getName());
+        surnameAdmin.setText(admin.getSurname());
+        idAdmin.setText(admin.getId());
+        passwordAdmin.setText(admin.getPassword());
+        idAdmin.setEditable(false);
+        adminIsInEditMode = Boolean.TRUE;
     
+    }
+
+    private void adminEditOp() {
+        AdminListController.Admin admin = new AdminListController.Admin(nameAdmin.getText(), surnameAdmin.getText(), idAdmin.getText(), passwordAdmin.getText());
+        if(databaseHandler.updateAdmin(admin))
+        {
+            AlertMaker.showSimpleAlert("Succsess", "Book updated");
+        }else{
+            AlertMaker.showErrorMessage("Failed", "Book was not updated");
+        }
+    }
 }
+    
+

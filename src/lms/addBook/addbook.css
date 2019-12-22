@@ -8,3 +8,10 @@
     -fx-background-color: #2E7D32;
 }
 
+.setup-button{
+    -fx-background-color: #424242;
+    -fx-text-fill: white;
+}
+.setup-button:hover{
+    -fx-background-color: #2088D1; 
+}

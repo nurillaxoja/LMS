@@ -1,4 +1,4 @@
-
+    
 package lms.listStudent;
 
 import Alert.maker.AlertMaker;
@@ -48,8 +48,10 @@ public class StudentListController implements Initializable {
     private TableColumn<Student, String> surnameCol;
     @FXML
     private TableColumn<Student, String> idCol;
-    
+    @FXML
+    private TableColumn<Student, String> passwordCol;
     ObservableList<Student> list = FXCollections.observableArrayList();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         intiCol();
@@ -60,6 +62,7 @@ public class StudentListController implements Initializable {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         surnameCol.setCellValueFactory(new PropertyValueFactory<>("surname"));
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
     }
 
     private void loadData() {
@@ -73,8 +76,9 @@ public class StudentListController implements Initializable {
                 String id = rs.getString("id");
                 String name = rs.getString("name");
                 String surname = rs.getString("surname");
+                String password = rs.getString("password");
                 
-                list.add(new Student(name, surname, id,null));
+                list.add(new Student(name, surname, id,password));
             }
         } catch (SQLException ex) {
             Logger.getLogger(AddBookController.class.getName()).log(Level.SEVERE, null, ex);

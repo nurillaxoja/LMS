@@ -1,5 +1,4 @@
-
-package lms.logIn;
+package lms.logInStudent;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -19,37 +18,39 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import lms.Librorian.main.LibrorianMianController;
 import lms.database.databaseHandler;
+import lms.logIn.LogInController;
 import lms.util.Util;
 
-public class LogInController implements Initializable {
+
+public class LogInStudentController implements Initializable {
     @FXML
     private Label logInLabel;
     @FXML
-    private JFXTextField txtUsername;
+    public JFXTextField txtStudentUsername;
     @FXML
-    private JFXPasswordField txtPassword;
-    @FXML
-    private AnchorPane rootPane;
-    databaseHandler databaseHandler ;
-    LibrorianMianController lcontroller;
+    private JFXPasswordField txtStudentPassword;
     @FXML
     private Label lblWrong;
+
+    databaseHandler databaseHandler;
+    @FXML
+    private AnchorPane rootPane;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        databaseHandler = databaseHandler.getInstance();
-        
+         databaseHandler=databaseHandler.getInstance();
     }    
-
+   
     @FXML
-    private void LogInLibrarian(ActionEvent event) throws IOException {
+    private void LogInStudent(ActionEvent event) throws IOException {
         try {
-            if(databaseHandler.isLogInLibrarian(txtUsername.getText(),txtPassword.getText())){
-            Parent parent = FXMLLoader.load(getClass().getResource("/lms/Librorian/main/LibrorianMian.fxml"));
+            if(databaseHandler.isLogInStudent(txtStudentUsername.getText(), txtStudentPassword.getText())){
+            Parent parent = FXMLLoader.load(getClass().getResource("/lms/Student/main/StudentMain.fxml"));
+            Stage stage1 = (Stage) rootPane.getScene().getWindow();
+            stage1.close();
             Stage stage = new Stage(StageStyle.DECORATED);
             Util.setStage(stage);
-            stage.setTitle("Log in Lirarian");
+            stage.setTitle("Log in Student");
             stage.setScene(new Scene(parent));
             stage.show();
             }else{
@@ -59,9 +60,10 @@ public class LogInController implements Initializable {
             Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
     @FXML
-    private void Cancel(ActionEvent event) {
+    private void StudentCancel(ActionEvent event) {
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
     }

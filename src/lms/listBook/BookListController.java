@@ -139,14 +139,10 @@ public class BookListController implements Initializable {
             stage.show();
             stage.setOnCloseRequest((e)->{
                 listRefreshOp( new ActionEvent());
-                
-            });
-            
-            
+            }); 
         } catch (IOException ex) {
             Logger.getLogger(LibrorianMianController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     @FXML
@@ -185,7 +181,5 @@ public class BookListController implements Initializable {
         public Boolean getAvailability() {
             return availability.get();
         }
-     
     }
-    
 }

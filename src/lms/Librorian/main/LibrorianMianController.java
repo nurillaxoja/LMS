@@ -1,4 +1,3 @@
-    
 package lms.Librorian.main;
 
 import Alert.maker.AlertMaker;
@@ -252,7 +251,7 @@ public class LibrorianMianController implements Initializable {
                 
                 issueData.add("\n Student informatrion \n\n");
                 qu = "SELECT * FROM STUDENT WHERE id = '" +sStudentId+"'";
-                //MASHIT TEPA HATO PAMOYMIU   ^^^^^      ERREO BOSA QARA 
+                
                 r1= databaseHandler.execQuery(qu);
                 while(r1.next()){
                     issueData.add("Member Name :"+r1.getString("name"));
@@ -265,7 +264,6 @@ public class LibrorianMianController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(LibrorianMianController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
         IssueDataList.getItems().setAll(issueData);
     }
 
@@ -313,50 +311,6 @@ public class LibrorianMianController implements Initializable {
          
         
     }
-
-    @FXML
-    private void loadRenewOp(ActionEvent event) {
-        if(!isReadyForSubmisson){
-                Alert alert1 = new Alert(Alert.AlertType.ERROR);
-                alert1.setTitle("Failed");
-                alert1.setHeaderText(null);
-                alert1.setContentText("Plsee select book to renew");
-                alert1.showAndWait();
-            return;
-        }
-        
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirm renew Operation");
-        alert.setHeaderText(null);
-        alert.setContentText("Are you shure about renew the book");
-        Optional<ButtonType> response = alert.showAndWait();
-        if(response.get() == ButtonType.OK){
-            String ac= "UPDATE ISSUE SET issueTime = CURRENT_TIMESTAMP ,renew_count =renew_count+1 WHERE BOOKID  = '"+ bookID.getText()+"'";
-            System.out.println(ac);
-            if(databaseHandler.execAction(ac)){
-                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-                alert1.setTitle("Book renew");
-                alert1.setHeaderText(null);
-                alert1.setContentText("Book renew was succses");
-                alert1.showAndWait();
-            }else{
-                 Alert alert1 = new Alert(Alert.AlertType.ERROR);
-                alert1.setTitle("Book was not renewed");
-                alert1.setHeaderText(null);
-                alert1.setContentText("Renew failed");
-                alert1.showAndWait();
-            }   
-        }    
-        else{
-             Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-                alert1.setTitle("Cancled");
-                alert1.setHeaderText(null);
-                alert1.setContentText("Renew cancled");
-                alert1.showAndWait();
-        }
-        
-    }    
-
     @FXML
     private void menuClose(ActionEvent event) {
        ((Stage)rootPane.getScene().getWindow()).close();
@@ -376,7 +330,7 @@ public class LibrorianMianController implements Initializable {
 
     @FXML
     public void menuViewBook(ActionEvent event) {
-        loadWindow("/lms/listBook/bookList.fxml", "Studen list");
+        loadWindow("/lms/listBook/bookList.fxml", "Book list");
           
     }
 
@@ -399,12 +353,24 @@ public class LibrorianMianController implements Initializable {
     @FXML
     private void loadSearchInNen(ActionEvent event) {
         loadWindow("/lms/Web/webWiew.fxml", "Inha Universitiy Bowser");
-    
     }
 
-    
-    
-  
+    @FXML
+    private void menuLogOut(ActionEvent event) {
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
+        
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource("/lms/main/main.fxml"));
+            Stage stage1 = new Stage(StageStyle.DECORATED);
+            Util.setStage(stage1);
+            stage1.setTitle("INHA Universitiy Lirary Managment System");
+            stage1.setScene(new Scene(parent));
+            stage1.show();
+        } catch (IOException ex) {
+            Logger.getLogger(LibrorianMianController.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
 }
 
 

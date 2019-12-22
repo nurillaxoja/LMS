@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lms.Librorian.main.LibrorianMianController;
-import lms.addMember.MamberAddLoader;
+
 
 
 public class MainAdminController implements Initializable {
@@ -101,6 +101,13 @@ public class MainAdminController implements Initializable {
     @FXML
     private void loadViewAdmin(ActionEvent event) {
         LConntroller.loadWindow("/lms/listAdmin/adminList.fxml", "Administrators List");
+    }
+
+    @FXML
+    private void menuLogOut(ActionEvent event) {
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
+        LConntroller.loadWindow("/lms/main/main.fxml", "INHA Universitiy Lirary Managment System");
     }
       
 }

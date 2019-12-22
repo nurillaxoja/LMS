@@ -15,8 +15,9 @@
       <TableView fx:id="tableView" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
           <TableColumn fx:id="nameCol" prefWidth="211.0" text="name" />
-          <TableColumn fx:id="surnameCol" minWidth="0.0" prefWidth="200.0" text="surname" />
-            <TableColumn fx:id="idCol" minWidth="0.0" prefWidth="188.0" text="id" />
+          <TableColumn fx:id="surnameCol" minWidth="0.0" prefWidth="90.0" text="surname" />
+            <TableColumn fx:id="idCol" minWidth="0.0" prefWidth="120.0" text="id" />
+            <TableColumn fx:id="passwordCol" minWidth="0.0" prefWidth="178.0" text="password" />
         </columns>
          <contextMenu>
             <ContextMenu>

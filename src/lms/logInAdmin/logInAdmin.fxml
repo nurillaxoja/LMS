@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="362.0" prefWidth="354.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="lms.logInAdmin.LogInAdminController">
+   <children>
+      <Label fx:id="lblWrong" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="162.0" layoutY="210.0" prefHeight="17.0" prefWidth="152.0" textAlignment="RIGHT" textFill="RED" />
+      <JFXButton layoutX="215.0" layoutY="250.0" onAction="#adminCancel" prefHeight="37.0" prefWidth="74.0" stylesheets="@../addBook/addbook.css" text="Cancel" />
+      <JFXButton layoutX="88.0" layoutY="250.0" onAction="#LogInAdmin" prefHeight="37.0" prefWidth="74.0" stylesheets="@../addBook/addbook.css" text="Log in" />
+      <JFXPasswordField fx:id="txtAdminPassword" labelFloat="true" layoutX="51.0" layoutY="173.0" maxWidth="224.0" minWidth="224.0" onAction="#LogInAdmin" prefHeight="31.0" prefWidth="224.0" promptText="password">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXTextField fx:id="txtAdminUsername" labelFloat="true" layoutX="51.0" layoutY="106.0" maxWidth="234.0" minWidth="224.0" prefHeight="31.0" prefWidth="224.0" promptText="Username">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXTextField>
+      <Label fx:id="logInLabel" alignment="CENTER" contentDisplay="TOP" layoutY="6.0" prefHeight="88.0" prefWidth="354.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Inha Universitiy in Tashkent &#10;Library Managment System&#10;Administrator" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Calibri" size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
